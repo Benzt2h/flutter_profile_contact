@@ -13,24 +13,24 @@ class ContactViewmodel extends GetxController {
 
   String? validateName(String? value) {
     if (value == null || value.isEmpty) {
-      return 'กรุณากรอกชื่อ-นามสกุล';
+      return 'name'.tr;
     }
     if (!RegExp(r'^[ก-๙a-zA-Z\s]+$').hasMatch(value)) {
-      return 'ชื่อ-นามสกุลต้องประกอบด้วยตัวอักษรเท่านั้น';
+      return 'only_string'.tr;
     }
     return null;
   }
 
   String? validateAge(String? value) {
     if (value == null || value.isEmpty) {
-      return 'กรุณากรอกอายุ';
+      return 'age'.tr;
     }
     if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
-      return 'อายุต้องเป็นตัวเลขเท่านั้น';
+      return 'only_int'.tr;
     }
     int age = int.parse(value);
     if (age <= 0) {
-      return 'กรุณากรอกอายุที่เหมาะสม ';
+      return 'age'.tr;
     }
     return null;
   }

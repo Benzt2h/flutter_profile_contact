@@ -39,7 +39,7 @@ class ContactScreen extends GetView<ContactViewmodel> {
                           controller.onClearFillter();
                         },
                         icon: Icon(Icons.clear)),
-                labelText: 'ค้นหา',
+                labelText: 'search'.tr,
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.text,
@@ -72,7 +72,7 @@ class ContactScreen extends GetView<ContactViewmodel> {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               )),
-              Text(" อายุ: ${person.age}")
+              Text(" ${'age'.tr}: ${person.age}")
             ]);
           },
         ),
@@ -89,7 +89,7 @@ class ContactScreen extends GetView<ContactViewmodel> {
       dismissOnBackKeyPress: false,
       autoDismiss: false,
       onDismissCallback: (type) {},
-      title: "Add Contact",
+      title: "add_contact".tr,
       body: Container(
         height: 200.h,
         margin: EdgeInsets.symmetric(horizontal: 20.w),
@@ -102,7 +102,7 @@ class ContactScreen extends GetView<ContactViewmodel> {
               TextFormField(
                 controller: controller.txtNameController,
                 decoration: InputDecoration(
-                  labelText: 'ชื่อ-นามสกุล',
+                  labelText: 'name'.tr,
                   border: OutlineInputBorder(),
                 ),
                 validator: controller.validateName,
@@ -111,7 +111,7 @@ class ContactScreen extends GetView<ContactViewmodel> {
               TextFormField(
                 controller: controller.txtAgeController,
                 decoration: InputDecoration(
-                  labelText: 'อายุ',
+                  labelText: 'age'.tr,
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
@@ -122,12 +122,12 @@ class ContactScreen extends GetView<ContactViewmodel> {
           ),
         )),
       ),
-      btnOkText: "ปิด",
+      btnOkText: "add".tr,
       btnOkColor: Get.theme.colorScheme.primary,
       btnOkOnPress: () {
         controller.onAddPerson();
       },
-      btnCancelText: "ยกเลิก",
+      btnCancelText: "close".tr,
       btnCancelColor: Colors.redAccent,
       btnCancelOnPress: () {
         Get.back();
