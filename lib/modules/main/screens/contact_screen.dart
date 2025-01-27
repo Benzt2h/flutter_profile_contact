@@ -10,17 +10,33 @@ class ContactScreen extends GetView<ContactViewmodel> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _buildFillerBar(),
-        _buildPersonList(),
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 5.w, horizontal: 10.h),
+      child: Column(
+        children: [
+          _buildFillerBar(),
+          _buildPersonList(),
+        ],
+      ),
     );
   }
 
   Widget _buildFillerBar() {
     return Row(
       children: [
+        Expanded(
+          child: TextFormField(
+            controller: controller.txtfillterController,
+            onChanged: (value) {
+              controller.onFillter(value);
+            },
+            decoration: InputDecoration(
+              labelText: 'ค้นหา',
+              border: OutlineInputBorder(),
+            ),
+            keyboardType: TextInputType.text,
+          ),
+        ),
         GestureDetector(
           onTap: () async {
             await _buildDialogAddPerson().show();
@@ -35,7 +51,7 @@ class ContactScreen extends GetView<ContactViewmodel> {
     return Expanded(
       child: Obx(
         () => ListView.separated(
-          itemCount: controller.listPerson.length,
+          itemCount: controller.listPersonFillter.length,
           separatorBuilder: (BuildContext context, int index) =>
               const Divider(),
           itemBuilder: (context, index) {

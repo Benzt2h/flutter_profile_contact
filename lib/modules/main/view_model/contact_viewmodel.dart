@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 
 class ContactViewmodel extends GetxController {
   RxList<PersonModel> listPerson = RxList([]);
+  RxList<PersonModel> listPersonFillter = RxList([]);
   final formKey = GlobalKey<FormState>();
   final txtNameController = TextEditingController();
   final txtAgeController = TextEditingController();
+  final txtfillterController = TextEditingController();
 
   String? validateName(String? value) {
     if (value == null || value.isEmpty) {
@@ -43,6 +45,22 @@ class ContactViewmodel extends GetxController {
 
     txtNameController.clear();
     txtAgeController.clear();
+    txtfillterController.clear();
+    listPersonFillter.value = listPerson;
     Get.back();
+  }
+
+  Future<void> onFillter(String txt) async {
+    if (txt.length <= 2) {
+      listPersonFillter.value = listPerson.value;
+      return;
+    }
+    listPersonFillter.value = listPerson
+        .where(
+          (PersonModel person) => person.name.contains(txt),
+        )
+        .toList();
+
+    listPersonFillter.refresh();
   }
 }
