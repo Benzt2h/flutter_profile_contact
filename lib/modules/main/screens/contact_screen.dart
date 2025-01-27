@@ -25,16 +25,25 @@ class ContactScreen extends GetView<ContactViewmodel> {
     return Row(
       children: [
         Expanded(
-          child: TextFormField(
-            controller: controller.txtfillterController,
-            onChanged: (value) {
-              controller.onFillter(value);
-            },
-            decoration: InputDecoration(
-              labelText: 'ค้นหา',
-              border: OutlineInputBorder(),
+          child: Obx(
+            () => TextFormField(
+              controller: controller.txtfillterController,
+              onChanged: (value) {
+                controller.onFillter(value);
+              },
+              decoration: InputDecoration(
+                suffixIcon: !controller.isOnFillter.value
+                    ? null
+                    : IconButton(
+                        onPressed: () {
+                          controller.onClearFillter();
+                        },
+                        icon: Icon(Icons.clear)),
+                labelText: 'ค้นหา',
+                border: OutlineInputBorder(),
+              ),
+              keyboardType: TextInputType.text,
             ),
-            keyboardType: TextInputType.text,
           ),
         ),
         GestureDetector(

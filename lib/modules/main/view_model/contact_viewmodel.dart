@@ -9,6 +9,7 @@ class ContactViewmodel extends GetxController {
   final txtNameController = TextEditingController();
   final txtAgeController = TextEditingController();
   final txtfillterController = TextEditingController();
+  RxBool isOnFillter = RxBool(false);
 
   String? validateName(String? value) {
     if (value == null || value.isEmpty) {
@@ -34,7 +35,7 @@ class ContactViewmodel extends GetxController {
     return null;
   }
 
-  Future<void> onAddPerson() async {
+  onAddPerson() {
     if (!formKey.currentState!.validate()) return;
     listPerson.insert(
         0,
@@ -50,9 +51,20 @@ class ContactViewmodel extends GetxController {
     Get.back();
   }
 
-  Future<void> onFillter(String txt) async {
+  onClearFillter() {
+    txtfillterController.clear();
+    listPersonFillter.value = listPerson;
+    isOnFillter.value = false;
+  }
+
+  onFillter(String txt) {
+    if (txt.isNotEmpty) {
+      isOnFillter.value = true;
+    } else {
+      isOnFillter.value = false;
+    }
     if (txt.length <= 2) {
-      listPersonFillter.value = listPerson.value;
+      listPersonFillter.value = listPerson;
       return;
     }
     listPersonFillter.value = listPerson
