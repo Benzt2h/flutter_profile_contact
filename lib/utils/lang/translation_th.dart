@@ -9,4 +9,5 @@ const Map<String, String> getTh = {
   "close": "ปิด",
   "only_string": "Only string",
   "only_int": "Only Int",
+  "change_language": "เปลี่ยนภาษา",
 };

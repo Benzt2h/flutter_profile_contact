@@ -9,4 +9,5 @@ const Map<String, String> getEn = {
   "close": "Close",
   "only_string": "Only string",
   "only_int": "Only Int",
+  "change_language": "Change language",
 };
